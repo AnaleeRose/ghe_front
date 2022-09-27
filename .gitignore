@@ -11,6 +11,9 @@
 # production
 /build
 
+# dev environment
+*.code-workspace
+
 # misc
 .DS_Store
 .env.local
