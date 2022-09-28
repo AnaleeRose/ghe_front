@@ -1,19 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
-import './index.css';
-import App from './App';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
-ReactDOM.render(
-  // StrictMode is a tool for highlighting potential 
-  // problems in an application. Like Fragment, 
-  // StrictMode does not render any visible UI. 
-  // It activates additional checks and warnings for 
-  // its descendants.
-  <React.StrictMode>
-    <Router>  
-      <App />
-    </Router>
-  </React.StrictMode>,
-  document.getElementById('root')
+import router from "./config/routes";
+// import Team, { teamLoader } from "./routes/team";
+
+
+
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <RouterProvider router={router} />
 );

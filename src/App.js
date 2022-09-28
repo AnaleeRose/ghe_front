@@ -1,13 +1,10 @@
-import React from 'react';
-import myRoutes from './config/routes';
-import './App.css';
 
-function App() {
-  return (
-    <div>
-      { myRoutes }
-    </div>
-  );
-}
+// function App() {
+//   return (
+//     <div className='App'>
+//       <Router />
+//     </div>
+//   );
+// }
 
-export default App;
+// export default App;

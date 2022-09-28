@@ -1,45 +1,32 @@
-import React from 'react';
-import { Routes , Route } from 'react-router-dom';
-import Circuit from '../pages/Circuit';
-import Home from '../pages/Home';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
-// const PrivateRoute = ({ component: Component, ...rest }) => {
-//   const currentUser = localStorage.getItem('id')
-//   return <Route {...rest} render={props => {
-//     return currentUser ? <Component {...rest} {...props} /> : <Redirect to="/login" />
-//   }}
-//   />
-// }
+import { Home } from "../pages/home";
+import { Circuit, circuitLoader } from "../pages/circuit";
+import User from "../pages/user";
 
-const myRoutes = (props) => (
-  
-  <Routes>
-    <Route path='/' component={<Home/>} />
-    <Route path='/circuit/:id' component={<Circuit/>} />
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "circuit/:id",
+    element: <Circuit />,
+    loader: circuitLoader,
+  },
+  {
+    path: "user",
+    element: <User />
+  },
+  {
+    path: "user",
+    element: <User />
+  },
+]);
 
-    {/* <Route path='/about' component={About} />
-    <PrivateRoute path='/matches' component={Matches} currentUser={props.currentUser} />
-    <Route path='/browse' component={Browse} />
-    <Route path='/register' component={Register} />
-    <PrivateRoute path='/profile/edit' component={EditProfile} currentUser={props.currentUser} />
-    <Route path='/login' render={(routeComponentProps) => {
-      return <Login
-        {...routeComponentProps}
-        // more props to come here
-        currentUser={props.currentUser}
-        storeUser={props.storeUser}
-      />
-    }} />
-
-
-    <PrivateRoute path='/profile/:id' component={ViewProfile} currentUser={props.currentUser}  
-    />
-    
-    <PrivateRoute path='/profile' component={Profile} currentUser={props.currentUser} />
-
-    <Route path='/browse' component={Browse} /> */}
-    {/* // need another route for a passed in user */}
-  </Routes>
-)
-
-export default myRoutes;
+export default router;
