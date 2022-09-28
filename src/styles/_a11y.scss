@@ -1,0 +1,9 @@
+.a11y-text {
+    overflow-x: hidden;
+    margin: 0;
+
+    span {
+        position: absolute;
+        left: -2000vw;
+    }
+}

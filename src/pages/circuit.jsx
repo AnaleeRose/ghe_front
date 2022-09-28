@@ -5,6 +5,43 @@ import {
   } from "react-router-dom";
 
 import CircuitModel from "../models/circuit";
+import { Header } from "../components/header"
+import { HeadingBlurb } from "../components/headingBlurb"
+import '../styles/_base.scss';
+import '../styles/_blurb.scss';
+import styles from "../styles/circuit.module.scss";
+
+
+let blurbOptions = {
+    heading: "GOLDEN CUP CIRCUIT", 
+    imgLink:process.env.REACT_APP_SITE_URL + "/imgs/background/trophy.svg", 
+    imgAltText: "trophy background image",
+    btnText: "JOIN A TEAM", 
+    btnLink: "/franchises", 
+  };
+
+export function Circuit() {
+    const { circuitData } = useLoaderData();
+    circuitData.sort(function(a, b) { return a.id - b.id;})
+
+
+
+    return (
+        <>
+        <Header />
+        <main className="circuit">
+          <div className="blurb blurb-heading">
+            <HeadingBlurb blurbOptions={blurbOptions} />
+            <div className="content">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat.</p>
+              <p>May the best team win.</p>
+            </div>
+          </div>
+        </main>
+        <MatchInfo data={circuitData}/>
+        </>
+    );
+}
 
 export async function circuitLoader() {
     var json_data = await CircuitModel.getCircuitData(1);
@@ -19,21 +56,6 @@ export async function circuitLoader() {
         return a.match_number- b.match_number;
     });
     return { circuitData };
-}
-
-
-export function Circuit() {
-    const { circuitData } = useLoaderData();
-    circuitData.sort(function(a, b) { return a.id - b.id;})
-
-
-
-    return (
-        <>
-        <div id="detail">The Golden Cup </div>
-        <MatchInfo data={circuitData}/>
-        </>
-    );
 }
 
 const MatchInfo = ({data}) => (

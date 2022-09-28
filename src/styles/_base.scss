@@ -1,0 +1,135 @@
+@import "reset";
+@import "colors";
+@import "a11y";
+@import "fonts";
+
+body {
+    background: $neutral-dark;
+    background: linear-gradient(180deg, $neutral 0%, $neutral-dark 23%);
+    background-repeat: no-repeat;
+    color: $text;
+    font: $headerFont;
+    min-height: 100vh;
+}
+
+#root {
+    margin: auto;
+    max-width: 1600px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font: $headerFont;
+}
+
+main {
+    padding: 3rem calc(3vw + 7rem);
+}
+
+.btn {
+    color: $neutral;
+    cursor: pointer;
+    margin: 0 1.5rem;
+    padding: .15rem .35rem;
+    position: relative;
+    font-size: 1.15rem;
+    transition: color .5s, background-color .5s;
+
+    &:before {
+        border: 1rem solid transparent;
+        border-left: 0;
+        border-right: 1rem solid $primary;
+        content: "";
+        height: 0;
+        left: -1rem;
+        position: absolute;
+        top: 0;
+        transition: border-color .5s;
+        width: 0;
+    }
+
+    &:after {
+        border: 1rem solid transparent;
+        border-right: 0;
+        border-left: 1rem solid $primary;
+        content: "";
+        height: 0;
+        right: -1rem;
+        position: absolute;
+        top: 0;
+        transition: border-color .5s;
+        width: 0;
+    }
+
+
+    &.btn-primary {
+        background-color: $primary;
+
+        &:before {
+            border-right: 1rem solid $primary;
+        }                
+        &:after {
+            border-left: 1rem solid $primary;
+        }
+
+        &:hover {
+            background-color: $primary-dark;
+
+            &:before {
+                border-right: 1rem solid $primary-dark;
+            }                
+            &:after {
+                border-left: 1rem solid $primary-dark;
+            }
+        }
+    }
+
+    &.btn-secondary {
+        background-color: $secondary;
+
+        &:before {
+            border-right: 1rem solid $secondary;
+        }                
+        &:after {
+            border-left: 1rem solid $secondary;
+        }
+
+        &:hover {
+            background-color: $secondary-dark;
+
+            &:before {
+                border-right: 1rem solid $secondary-dark;
+            }                
+            &:after {
+                border-left: 1rem solid $secondary-dark;
+            }
+        }
+    }
+
+    &.btn-basic {
+        background-color: $white;
+
+        &:before {
+            border-right: 1rem solid $white;
+        }                
+        &:after {
+            border-left: 1rem solid $white;
+        }
+
+        &:hover {
+            background-color: $white-dark;
+
+            &:before {
+                border-right: 1rem solid $white-dark;
+            }                
+            &:after {
+                border-left: 1rem solid $white-dark;
+            }
+        }
+    }
+}
+

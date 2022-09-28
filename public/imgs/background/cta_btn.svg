@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="357.23" height="73.549" viewBox="0 0 357.23 73.549">
+  <defs>
+    <filter id="Path_35" x="0" y="3" width="357.23" height="70.549" filterUnits="userSpaceOnUse">
+      <feOffset dx="-15" dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-opacity="0.122"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Exclusion_2" x="4.63" y="0" width="333.441" height="63.549" filterUnits="userSpaceOnUse">
+      <feOffset dx="15" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-2"/>
+      <feFlood flood-opacity="0.122"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_284" data-name="Group 284" transform="translate(-292.329 -685.757)">
+    <g transform="matrix(1, 0, 0, 1, 292.33, 685.76)" filter="url(#Path_35)">
+      <path id="Path_35-2" data-name="Path 35" d="M-117.559,0H164.123L192.9,28.774,164.123,57.549H-117.559l-28.774-28.774Z" transform="translate(164.33 3)" fill="#ffae1f"/>
+    </g>
+    <g id="Group_210" data-name="Group 210" transform="translate(346.285 688.757)">
+      <g transform="matrix(1, 0, 0, 1, -53.96, -3)" filter="url(#Exclusion_2)">
+        <path id="Exclusion_2-2" data-name="Exclusion 2" d="M-34.393,0H223.5l28.774,28.774L223.5,57.549H-34.393L-63.167,28.774Z" transform="translate(67.8 3)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

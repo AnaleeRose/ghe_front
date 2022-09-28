@@ -1,0 +1,63 @@
+
+@import "colors";
+@import "fonts";
+.blurb-heading {
+    display: grid;
+    grid-template-areas: 
+    "heading"
+    "content"
+    "btnContainer";
+    position: relative;
+    margin: auto;
+    max-width: 70rem;
+
+    .heading {
+        color: $primary;
+        grid-area: heading;
+        font-size: 2.5rem;
+    }
+    .content {
+        grid-area: content;
+        margin: 0 2rem 2rem;
+        max-width: 40rem;
+        width: 70%;
+
+        p {
+            font: $bodyFont;
+            margin-top: 0;
+        }
+    }
+    .btnContainer {grid-area: btnContainer;}
+    .btn {
+        color: $primary-dark;
+        font-size: 1.5rem;
+        position: relative;
+        z-index: 0;
+
+        &::before {
+            background-image: url(http://localhost:3000/imgs/background/cta_btn.svg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            border: none;
+            height: calc(100% + 5rem);
+            left: -1.75rem;
+            top: -.25rem;
+            width: calc(100% + 5rem);
+            z-index: -1;
+        }
+        &::after {
+            content: none;
+        }
+    }
+    .img-section {
+        position: absolute;
+        right: 0;
+        top: 10%;
+        height: 100%;
+
+        img {
+            height: 100%;
+            width: auto;
+        }
+    }
+}
