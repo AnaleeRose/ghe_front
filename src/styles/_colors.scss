@@ -1,4 +1,4 @@
-$primary: #FFAE1F;
+$primary: #ffb32e;
 $primary-dark: #C8840E;
 $secondary: #FF88E0;
 $secondary-dark: #B41895;
@@ -6,6 +6,20 @@ $neutral: #1D2231;
 $neutral-dark: #050917;
 
 $white: #fff;
-$white-dark: #CACCD2;
+$white-dark: #a2a5ad;
 
 $text: $white;
+
+body {
+    --primary: #ffb32e;
+    --primary-dark: #C8840E;
+    --secondary: #FF88E0;
+    --secondary-dark: #B41895;
+    --neutral: #1D2231;
+    --neutral-dark: #050917;
+
+    --white: #fff;
+    --white-dark: #a2a5ad;
+
+    --text: #fff;
+}
