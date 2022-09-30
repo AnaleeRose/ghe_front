@@ -23,11 +23,11 @@ const MainLoginSignup = (props) => {
     return (
         <>
             { props.userExists ? 
-                <Button link="/" btn_class="basic" text="Logout" />
+                <Button link="/" btn_class="basic" text="LOGOUT" />
                 :
                 <div className="login-signup-container">
-                    <Button link="/" btn_class="trans" text="Login" />
-                    <Button link="/" btn_class="primary" text="Sign Up" />
+                    <Button link="/" btn_class="trans" text="LOGIN" />
+                    <Button link="/" btn_class="primary" text="SIGN UP" />
                 </div>
             }
         </>
