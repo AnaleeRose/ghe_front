@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
-import { Header } from "../components/header"
-import { HeadingBlurb } from "../components/headingBlurb"
+import { Header } from "../components/Header"
+import { HeadingBlurb } from "../components/HeadingBlurb"
 import '../styles/styles.scss';
 
 export function Home() {

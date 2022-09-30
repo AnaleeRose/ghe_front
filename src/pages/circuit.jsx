@@ -1,9 +1,9 @@
 import { useLoaderData } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
-import { Header } from "../components/Header"
-import { HeadingBlurb } from "../components/HeadingBlurb"
-import { Matches } from "../components/Matches"
+import { Header } from "../components/Header";
+import { HeadingBlurb } from "../components/HeadingBlurb";
+import { Matches } from "../components/Matches";
 
 import '../styles/styles.scss';
 
