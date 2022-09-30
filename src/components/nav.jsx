@@ -1,6 +1,5 @@
-import {
-    Link,
-} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Button } from "./Button.jsx";
 
 export function Nav(props) {
     let type = (props.type == null) ? "default" : props.type
@@ -16,11 +15,10 @@ export function Nav(props) {
 function MainNav(props) {
     return (
         <nav>
-            <Link to="/home"className="btn btn-primary">Home</Link>
-            <Link to="/circuit/1"className="btn btn-primary">Circuit</Link>
-            <Link to="/circuit/1"className="btn btn-primary">About</Link>
-            <Link to="/circuit/1"className="btn btn-primary">Contact</Link>
-            <Link to="/circuit/1" className="btn btn-secondary">Donate</Link>
+            <Button link="/circuit/1" btn_class="primary" text="Circuit" />
+            <Button link="/circuit/1" btn_class="primary" text="Franchises" />
+            <Button link="/circuit/1" btn_class="primary" text="Partners" />
+            <Button link="/circuit/1" btn_class="secondary" text="Donate" />
         </nav>
     );
 }
