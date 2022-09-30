@@ -2,7 +2,7 @@
 .mainHeader {
     align-items: center;
     background-color: $neutral-dark;
-    margin: 2vh 0;
+    margin: 1vh 0 2vh;
     display: flex;
     justify-content: space-between;
     padding: 0rem 3vw;
@@ -12,9 +12,10 @@
     &:before {
         content: "";
         background-color: $neutral-dark;
-        height: 100%;
+        height: calc(100% + 2rem);
         left: -25vw;
         position: absolute;
+        top: -1rem;
         width: 150vw;
         z-index: -1;
     }
@@ -94,7 +95,7 @@
             flex-direction: column;
             position: absolute;
             top: 7rem;
-            left: calc(2vw + 2.5rem);
+            left: calc(2.5vw + 1.65rem);
 
             a {
                 margin: 0 0 2rem;
@@ -112,11 +113,20 @@
         
 
         nav {
+            display: flex;
+            flex-direction: row;
             padding-left: 2rem;
         
             a.btn {
                 text-transform: uppercase;
             }
+        }
+    }
+
+    .login-signup-container {
+        display: flex;
+        .btn.btn-translucent {
+            margin: 0 .5rem;
         }
     }
 }
