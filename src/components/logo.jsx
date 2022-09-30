@@ -23,7 +23,7 @@ function MainLogo(props) {
         <>
             <Link to="/home" className="logo">
                 <h1 className="a11y-text"><span>Golden Hour eSports</span></h1>
-                <img src={imgLink} />
+                <img src={imgLink} alt="GHE Logo" />
             </Link>
         </>
     );
