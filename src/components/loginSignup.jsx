@@ -1,22 +1,49 @@
 import {
     Link,
 } from "react-router-dom";
+import React, { useState } from 'react';
+import { Button } from "./Button.jsx";
 
-export function LoginSignup(props) {
+
+export const LoginSignup = (props) => {
     let type = (props.type == null) ? "header" : props.type
     switch(type) {
         case "header":
             return <MainLoginSignup />
+            
+        case "popupVer":
+            return <PopupVer />
 
         default:
             return <></>;
     }
 }
 
-function MainLoginSignup(props) {
+const MainLoginSignup = (props) => {
     return (
         <>
-            <p className="btn btn-basic">Login/Signup</p>
+            { props.userExists ? 
+                <Button link="/" btn_class="basic" text="Logout" />
+                :
+                <div className="login-signup-container">
+                    <Button link="/" btn_class="trans" text="Login" />
+                    <Button link="/" btn_class="primary" text="Sign Up" />
+                </div>
+            }
         </>
+    );
+}
+
+const PopupVer = () => {
+    // Declare a new state variable, which we'll call "count"
+    const [count, setCount] = useState(0);
+
+    return (
+        <div>
+        <p>You clicked {count} times</p>
+        <button onClick={() => setCount(count + 1)}>
+            Click me
+        </button>
+        </div>
     );
 }
