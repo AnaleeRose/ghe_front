@@ -5,9 +5,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { Home } from "../pages/home";
-import { Circuit, circuitLoader } from "../pages/circuit";
-import User from "../pages/user";
+import { Home } from "../pages/Home";
+import { Circuit, circuitLoader } from "../pages/Circuit";
+import User from "../pages/User";
 
 const router = createBrowserRouter([
   {
@@ -24,11 +24,11 @@ const router = createBrowserRouter([
     loader: circuitLoader,
   },
   {
-    path: "user",
+    path: "/users",
     element: <User />
   },
   {
-    path: "user",
+    path: "/user",
     element: <User />
   },
 ]);

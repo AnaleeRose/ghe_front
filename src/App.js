@@ -1,10 +1,15 @@
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import {
+  RouterProvider,
+} from "react-router-dom";
 
-// function App() {
-//   return (
-//     <div className='App'>
-//       <Router />
-//     </div>
-//   );
-// }
+import router from "./config/routes";
 
-// export default App;
+function App() {
+  return (
+  <RouterProvider router={router} />
+  );
+}
+
+export default App;
