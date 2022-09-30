@@ -1,7 +1,7 @@
 import {
     Link,
 } from "react-router-dom";
-import { Logo } from '../components/logo';
+import { Logo } from './Logo';
 
 export function SocialMedia(props) {
     return (

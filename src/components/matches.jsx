@@ -24,7 +24,6 @@ export const Matches = ({matches}) => (
                 height={600} 
                 {...props}
             >
-            {/* // <SVGViewer {...props}> */}
                 {children}
             </SVGViewer>
             )}
