@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import '../styles/_login.scss';
 
 export function Logo(props) {
     let type = (props.type == null) ? "default" : props.type
@@ -35,7 +34,8 @@ function TwitterLogo(props) {
         <>
             <Link to="https://twitter.com/GoldenHourES">
                 <p className="a11y-text"><span>Golden Hour eSports Twitter</span></p>
-                <img src={process.env.REACT_APP_SITE_URL + "/imgs/logos/twitter.jpg"} />
+                <i className="fa-brands fa-twitter"></i>
+                {/* <img src={process.env.REACT_APP_SITE_URL + "/imgs/logos/twitter.jpg"} /> */}
             </Link>
         </>
     );
@@ -46,7 +46,7 @@ function DiscordLogo(props) {
         <>
             <Link to="https://twitter.com/GoldenHourES">
                 <p className="a11y-text"><span>Join Golden Hour eSports' Discord</span></p>
-                <img src={process.env.REACT_APP_SITE_URL + "/imgs/logos/discord.jpg"} />
+                <i className="fa-brands fa-discord"></i>
             </Link>
         </>
     );
