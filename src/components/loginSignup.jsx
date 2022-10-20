@@ -1,6 +1,6 @@
 // import { Link } from "react-router-dom";
 import React, { useState } from 'react';
-import { Button } from "./Button.jsx";
+import { Button } from "./button.jsx";
 
 
 export const LoginSignup = (props) => {

@@ -1,5 +1,5 @@
 // import { Link } from "react-router-dom";
-import { Button } from "./Button.jsx";
+import { Button } from "./button.jsx";
 
 export function Nav(props) {
     let type = (props.type == null) ? "default" : props.type
