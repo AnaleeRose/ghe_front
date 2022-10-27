@@ -1,47 +1,57 @@
+import { useLoaderData } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { Header } from "../components/Header"
-import { HeadingBlurb } from "../components/HeadingBlurb"
+
+import { Header } from "../components/Header.jsx";
+import { HeadingBlurb } from "../components/HeadingBlurb.jsx";
+import { Matches } from "../components/Matches.jsx";
+
 import '../styles/styles.scss';
 
-export function Home() {
+// displays the circuit page
+export const Circuit = () => {
+    const { match_info } = useLoaderData();
+
     return (
-      <>
-        {/* Helmet allows us to stuff custom code into the head of the document */}
+        <>
         <Helmet>
           <script src="https://kit.fontawesome.com/3d78030f24.js" crossorigin="anonymous"></script>
         </Helmet>
         <Header />
-        <main  className="home">
-          <div className="blurbContainer">
-            {/* reuable bit of code for that heading blurb section that appears on most pages  */}
+        <main className="circuit">
+          <section className="blurbContainer">
             <HeadingBlurb blurbOptions={blurbOptions} pageStyles={pageStyles} />
             <div className="blurbContent">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat.</p>
               <p>May the best team win.</p>
             </div>
-          </div>
+          </section>
+          <Matches matches={match_info}/>
         </main>
-      </>
+        </>
     );
 }
 
 // styles that are specific to this page
 const pageStyles= {
+  matchupsContainer: {
+    margin: "6rem 0 0",
+  },
+
   btnCTA: {
-    paddingLeft: "1.75rem",
+    paddingLeft: "2.25rem",
   },
 
   btnCTAbg: {
-      width: "15.5rem",
-      top: "-.25rem",
+    width: "15rem",
+    top: "-.15rem",
   }
 }
 
 // customizes the heading blurb section
 let blurbOptions = {
-  heading: "WHO WE ARE", 
-  imgLink:process.env.REACT_APP_SITE_URL + "/imgs/background/trophy.svg", 
-  imgAltText: "trophy background image",
-  btnText: "SEE MATCHUPS", 
-  btnLink: "/circuit/1", 
+    heading: "THE GOLDEN CUP", 
+    imgLink:process.env.REACT_APP_SITE_URL + "/imgs/background/trophy.svg", 
+    imgAltText: "trophy background image",
+    btnText: "JOIN A TEAM", 
+    btnLink: "/franchises", 
 };
