@@ -1,7 +1,7 @@
-import { Logo } from './Logo';
-import { SocialMedia } from './SocialMedia';
-import { Nav } from './Nav';
-import { LoginSignup } from './LoginSignup';
+import { Logo } from './Logo.jsx';
+import { SocialMedia } from './SocialMedia.jsx';
+import { Nav } from './Nav.jsx';
+import { LoginSignup } from './LoginSignup.jsx';
 import '../styles/_header.scss';
 
 
