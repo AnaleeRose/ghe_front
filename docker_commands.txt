@@ -1,6 +1,2 @@
-docker build -t ghe_front .
-docker run -p 49160:3000 -d analeerose/ghe_front --network ghe_network --network-alias ghe-front
-
-docker run -dp 3000:3000 --network=ghe_network --network-alias=ghe_front --name=ghe_front `-w /app -v "$(pwd):/app"  ` node:17-alpine ` sh -c "npm start" ghe_front
-
-docker run -dp 5430:5432 --network=ghe_network ghe_db 
+docker build -t ghe_front ./
+docker run -dp 49160:3000 --network=ghe_network --network-alias=ghe_front --name=ghe_front --name=ghe_front ghe_front

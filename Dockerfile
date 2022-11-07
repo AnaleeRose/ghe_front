@@ -1,5 +1,9 @@
 FROM node:17
 
+RUN apt-get update
+RUN apt-get -y install iputils-ping
+RUN apt-get -y install dnsutils
+
 # Create app directory
 WORKDIR /usr/src/app
 
