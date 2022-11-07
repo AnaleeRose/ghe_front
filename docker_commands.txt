@@ -1,0 +1,2 @@
+docker build -t ghe_front ./
+docker run -dp 49160:3000 --network=ghe_network --network-alias=ghe_front --name=ghe_front --name=ghe_front ghe_front
