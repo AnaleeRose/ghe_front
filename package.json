@@ -13,6 +13,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "body-parser": "^1.20.1",
     "decorators": "^0.0.1",
     "dotenv-webpack": "^8.0.1",
     "fs": "^0.0.1-security",
