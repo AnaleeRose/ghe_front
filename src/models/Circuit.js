@@ -8,9 +8,6 @@ export default class CircuitModel {
             },
             credentials: "include",
         }).then(res => res.json())
-        // }).then(function(res) {
-        //     console.log(res.text())
-        //     res.json()
-        // })
+
     }
 }
