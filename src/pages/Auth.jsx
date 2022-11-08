@@ -19,7 +19,7 @@ export const AuthDiscord = () => {
                     client_secret: process.env.REACT_APP_DISCORD_CLIENT_SECRET,
                     code: code,
                     grant_type: 'authorization_code',
-                    redirect_uri: `http://localhost:3000/auth/discord`,
+                    redirect_uri: process.env.REACT_APP_DISCORD_REDIRECT_URL,
                     scope: 'identify',
                 }).toString(),
                 headers: {
