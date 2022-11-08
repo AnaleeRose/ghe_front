@@ -24,7 +24,7 @@ const MainLoginSignup = (props) => {
                 <Button link="/" btn_class="basic" text="LOGOUT" />
                 :
                 <div className="login-signup-container">
-                    <Button link="/" btn_class="trans" text="LOGIN" />
+                    <Button link="/auth/discord" btn_class="trans" text="LOGIN" />
                     <Button link="/" btn_class="primary" text="SIGN UP" />
                 </div>
             }

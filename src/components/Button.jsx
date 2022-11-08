@@ -4,7 +4,8 @@ export const Button = (props) => {
     let btn_class = "btn btn-" + props.btn_class
     return (
         <div className={btn_container_class}>
-            <Link to={props.link} className={btn_class}>{props.text}</Link>
+            {props.link ? <Link to={props.link} className={btn_class}>{props.text}</Link> : false}
+            {props.href ? <a href={props.href} className={btn_class}>{props.text}</a> : false}
             <svg className="bg" width="90%" height="100%" viewBox="0 0 325 70" preserveAspectRatio="none">
                 <g id="Group_284" data-name="Group 284" transform="translate(-292.329 -685.757)">
                     <g id="Group_210" data-name="Group 210" transform="translate(346.285 688.757)">
