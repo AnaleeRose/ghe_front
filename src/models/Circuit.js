@@ -9,5 +9,15 @@ export default class CircuitModel {
             credentials: "include",
         }).then(res => res.json())
 
+        // let address = 'https://www.ghesports.dev/app/circuit/1'
+        // fetch(address, {
+        //     method: "GET",
+        //     headers: {
+        //     "Content-Type": "application/json",
+        //     },
+        //     credentials: "include",
+        // // }).then(res => res.json())
+        // }).then(res => console.log(res.json()))
+
     }
 }
