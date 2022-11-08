@@ -4,6 +4,8 @@ import { HeadingBlurb } from "../components/HeadingBlurb.jsx"
 import '../styles/styles.scss';
 
 export function Home() {
+  console.log("REACT_APP_BACKEND_URL:" + process.env.REACT_APP_BACKEND_URL)
+  console.log("REACT_APP_NODE_ENV:" + process.env.REACT_APP_NODE_ENV)
     return (
       <>
         {/* Helmet allows us to stuff custom code into the head of the document */}
@@ -40,7 +42,7 @@ const pageStyles= {
 // customizes the heading blurb section
 let blurbOptions = {
   heading: "WHO WE ARE", 
-  imgLink:process.env.REACT_APP_SITE_URL + "/imgs/background/trophy.svg", 
+  imgLink: process.env.REACT_APP_SITE_URL + "/imgs/background/trophy.svg", 
   imgAltText: "trophy background image",
   btnText: "SEE MATCHUPS", 
   btnLink: "/circuit/1", 
