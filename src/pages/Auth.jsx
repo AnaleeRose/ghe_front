@@ -1,18 +1,20 @@
 import { useSearchParams, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { Header } from "../components/Header.jsx"
+import { Header } from "./../components/Header.jsx"
 import { Button } from "./../components/Button";
 import '../styles/styles.scss';
+import UserProfile from './../components/UserProfile';
 
 export const AuthDiscord = () => {
     const { params } = useParams();
     let [searchParams, setSearchParams] = useSearchParams();
     var code = searchParams.get("code");
+    let address = "";
+
 
     if (code) {
         try {
-            var oauthData;
-            const tokenResponseData = fetch('https://discord.com/api/oauth2/token', {
+            fetch('https://discord.com/api/oauth2/token', {
                 method: 'POST',
                 body: new URLSearchParams({
                     client_id: process.env.REACT_APP_DISCORD_CLIENT_ID,
@@ -28,8 +30,6 @@ export const AuthDiscord = () => {
             })
             .then((response) => response.json())
             .then((data) => {
-                console.log("DATA")
-                console.log(data)
                 fetch('https://discord.com/api/users/@me', {
                     headers: {
                         authorization: `${data.token_type} ${data.access_token}`,
@@ -39,7 +39,68 @@ export const AuthDiscord = () => {
                     console.log("RES")
                     console.log(res)
                     if (res.username) {
-                        document.getElementById("username").innerText = "Your Username: " + res.username;
+                        let discord_id = res.id;
+                        let discord_username = res.username;
+                        let discord_email = res.email;
+                        let discord_access_token = res.access_token;
+                        let discord_refresh_token = res.refresh_token;
+
+                        UserProfile.setDiscordAccessToken(discord_access_token)
+                        UserProfile.setDiscordRefreshToken(discord_refresh_token)
+                        UserProfile.setDiscordID(discord_id)
+                        UserProfile.setDiscordName(discord_username)
+                        UserProfile.setEmail(discord_email)
+                        sessionStorage.setItem('isLoggedIn', true);
+
+                        address = process.env.REACT_APP_BACKEND_URL + `/auth/discord/`
+                        const username = discord_username;
+                        const email = discord_email;
+                        fetch(address, {
+                            method: "POST",
+                            headers: {
+                            "Content-Type": "application/json",
+                            },
+                            credentials: "include",
+                            body: JSON.stringify({
+                                discord_access_token,
+                                discord_refresh_token,
+                                email,
+                            }),
+                        }).then(res => res.json())
+                        .then((data) => {
+                            console.error("backend response")
+                            console.log(data)
+                            let user_info = data.message[0].data[0]
+
+                            // sessionStorage.setItem('name', user_info.name);
+                            // sessionStorage.setItem('user_id', user_info.id);
+                            UserProfile.setName(user_info.name)
+                            UserProfile.setUserID(user_info.id)
+                        })
+                        .then(() => {
+                            // try {
+                            //     const userResult = fetch('https://discord.com/api/users/@me', {
+                            //         headers: {
+                            //             authorization: `${sessionStorage.getItem('discord_refresh_token')} ${sessionStorage.getItem('discord_access_token')}`,
+                            //         },
+                            //     }).body.json();
+    
+                            //     console.warning("path")
+                            //     console.log("https://cdn.discordapp.com/avatars/" + userResult.user_id + "/" + userResult.user_avatar + ".png")
+                            // }
+                            // catch(e) {
+                            //     console.error("fuck")
+                            //     console.log(e)
+                            // }
+
+                            if (window.sessionStorage.getItem("isLoggedIn")) {
+                                address = process.env.REACT_APP_SITE_URL + "/user"
+                                window.location.replace(address);
+                            }
+                        })
+
+                    } else {
+                        console.error('NO USERNAME');
                     }
                 })
             });
@@ -47,21 +108,85 @@ export const AuthDiscord = () => {
             console.error("ERR");
             console.error(error);
         }
+    } else {
+        console.error("NO CODE")
     }
+    if (sessionStorage.getItem("isLoggedIn") == undefined && !code) {
+        return (
+            <>
+
+                <Header />
+                <main  className="auth auth-discord">
+                    <Button href={process.env.REACT_APP_DISCORD_AUTH_URL} btn_class="primary" text="Link Your Discord" />
+                </main>
+            </>
+        );
+    } else if(sessionStorage.getItem("isLoggedIn") == undefined && code) {
+        return (
+            <>
+
+                <Header />
+                <main  className="auth auth-discord loading">
+                    <p></p>
+                    {/* <Button href={process.env.REACT_APP_DISCORD_AUTH_URL} btn_class="primary" text="Link Your Discord" /> */}
+                </main>
+            </>
+        );
+    } else if(sessionStorage.getItem("isLoggedIn")) {
+        address = process.env.REACT_APP_SITE_URL + "/user"
+        window.location.replace(address);
+    }
+}
+
+export const AuthLogout = () => {
+    let address = process.env.REACT_APP_BACKEND_URL + `/auth/logout`
+    try {
+        fetch(address, {
+        method: "GET",
+        headers: {
+        "Content-Type": "application/json",
+        },
+        credentials: "include",
+            }).then((res) => {
+                let data = res.json()
+                console.log("logout res")
+                console.log(data)
+            });
+    } catch (error) {
+        console.error("ERR");
+        console.error(error);
+    }
+
+    window.sessionStorage.clear();
 
     return (
         <>
-            <Helmet>
-                <script src="https://kit.fontawesome.com/3d78030f24.js" crossorigin="anonymous"></script>
-            </Helmet>
             <Header />
-            <main  className="auth-discord">
-                <Button href="https://discord.com/api/oauth2/authorize?client_id=1025248392244375574&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fdiscord&response_type=code&scope=identify%20email%20guilds" btn_class="primary" text="Link Your Discord" />
-                <br />
-                <br />
-                <p>Does not persist data yet.</p>
-                <p id="username"></p>
+            <main className="auth auth-logout">
+                <p>Successfully logged out.</p>
             </main>
         </>
     );
+}
+
+
+
+
+function sendToDb(email, username) {
+    let address = process.env.REACT_APP_BACKEND_URL + `/auth/discord/`
+    return fetch(address, {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+            email,
+            username
+        }),
+    }).then(res => res.json())
+        .then((data) => {
+            console.error("backend response")
+            console.log(data)
+        });
 }

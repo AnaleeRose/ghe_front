@@ -1,3 +1,12 @@
 .mainHeader p.btn-basic  {
     text-transform: uppercase;
 }
+
+.userPFP {
+    background-color: #fff;
+    border-radius: 50%;
+    height: 3.5rem;
+    position: relative;
+    width: 3.5rem;
+    z-index: 1;
+}
