@@ -13,9 +13,6 @@ export const Circuit = () => {
 
     return (
         <>
-        <Helmet>
-          <script src="https://kit.fontawesome.com/3d78030f24.js" crossorigin="anonymous"></script>
-        </Helmet>
         <Header />
         <main className="circuit">
           <section className="blurbContainer">

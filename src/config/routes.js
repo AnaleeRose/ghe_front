@@ -6,7 +6,7 @@ import { CircuitLoader } from "../hooks/CircuitLoader.jsx";
 import { Circuit } from "../pages/Circuit.jsx";
 import User from "../pages/User.jsx";
 import { AuthLoader } from "../hooks/AuthLoader.jsx";
-import { AuthDiscord } from "../pages/Auth.jsx";
+import { AuthDiscord, AuthLogout } from "../pages/Auth.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +33,11 @@ const router = createBrowserRouter([
   {
     path: "auth/discord",
     element: <AuthDiscord />,
+    // loader: AuthLoader,
+  },
+  {
+    path: "auth/logout",
+    element: <AuthLogout />,
   },
 ]);
 

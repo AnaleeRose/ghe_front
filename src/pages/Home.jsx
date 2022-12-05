@@ -8,10 +8,6 @@ export function Home() {
   console.log("REACT_APP_NODE_ENV:" + process.env.REACT_APP_NODE_ENV)
     return (
       <>
-        {/* Helmet allows us to stuff custom code into the head of the document */}
-        <Helmet>
-          <script src="https://kit.fontawesome.com/3d78030f24.js" crossorigin="anonymous"></script>
-        </Helmet>
         <Header />
         <main  className="home">
           <div className="blurbContainer">
