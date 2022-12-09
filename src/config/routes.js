@@ -4,9 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Home } from "../pages/Home.jsx";
 import { CircuitLoader } from "../hooks/CircuitLoader.jsx";
 import { Circuit } from "../pages/Circuit.jsx";
-import User from "../pages/User.jsx";
-import { AuthLoader } from "../hooks/AuthLoader.jsx";
-import { AuthDiscord, AuthLogout } from "../pages/Auth.jsx";
+import { User, UserLogin, UserLogout, UserLinkTracker } from "../pages/User.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,14 +29,19 @@ const router = createBrowserRouter([
     element: <User />
   },
   {
-    path: "auth/discord",
-    element: <AuthDiscord />,
+    path: "user/discord",
+    element: <UserLogin />,
     // loader: AuthLoader,
   },
   {
-    path: "auth/logout",
-    element: <AuthLogout />,
+    path: "user/logout",
+    element: <UserLogout />,
   },
+  {
+    path: "/user/tracker",
+    element: <UserLinkTracker />,
+  },
+  
 ]);
 
 export default router;

@@ -9,7 +9,7 @@ export const validateSession = () => {
         credentials: "include",
             }).then((res) => {
                 let data = res.json()
-                console.error("backend response - validate session")
+                console.log("fucking implement me pls")
                 console.log(data.headers)
                 console.log(data)
             });
@@ -21,6 +21,8 @@ export const validateSession = () => {
     if (sessionStorage.getItem('isLoggedIn') !== null) {
         return true;
     } else {
+        let address = process.env.REACT_APP_SITE_URL + "/user/login"
+        window.location.replace(address);
         return false;
     }
     
