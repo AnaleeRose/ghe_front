@@ -4,6 +4,7 @@ import { Button } from "./Button.jsx";
 import { ProfilePicture } from "./ProfilePicture.jsx"
 import { IsLoggedIn } from "./../hooks/IsLoggedIn.jsx";
 import { GetUsername } from "./../hooks/GetUsername.jsx";
+import { Link } from "react-router-dom";
 import UserProfile from './UserProfile';
 
 export const LoginSignup = (props) => {
@@ -24,7 +25,7 @@ const MainLoginSignup = (props) => {
                 <div className="login-signup-container">
                     <div className='profile-info'>
                         <ProfilePicture />
-                        <a href="/user">{UserProfile.getName()}</a>
+                        <Link to="/user" className="logo">{UserProfile.getName()}</Link>
                     </div>
                     <Button link="/user/logout" btn_class="trans" text="LOGOUT" />
                 </div>

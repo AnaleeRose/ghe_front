@@ -1,4 +1,4 @@
-export const validateSession = () => {
+export const validateSession = (admin = false) => {
     let address = process.env.REACT_APP_BACKEND_URL + `/auth/`
     try {
         fetch(address, {
@@ -19,11 +19,20 @@ export const validateSession = () => {
     }
 
     if (sessionStorage.getItem('isLoggedIn') !== null) {
+        if (admin) {
+            // update to pull from db!!!
+            if (sessionStorage.getItem('isAdmin') === null) {
+                let address = process.env.REACT_APP_SITE_URL + "/user"
+                window.location.replace(address);
+                return false;
+            }
+        }
         return true;
     } else {
         let address = process.env.REACT_APP_SITE_URL + "/user/login"
         window.location.replace(address);
         return false;
     }
+
     
 }

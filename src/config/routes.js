@@ -3,9 +3,10 @@ import { createBrowserRouter } from "react-router-dom";
 
 import { Home } from "../pages/Home.jsx";
 import { CircuitLoader } from "../hooks/CircuitLoader.jsx";
+import { AdminUsersLoader } from "../hooks/AdminUsersLoader.jsx";
 import { Circuit } from "../pages/Circuit.jsx";
 import { User, UserLogin, UserLogout, UserLinkTracker } from "../pages/User.jsx";
-
+import { Admin, AdminUsers, AdminTrackers } from "../pages/Admin.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,6 +41,19 @@ const router = createBrowserRouter([
   {
     path: "/user/tracker",
     element: <UserLinkTracker />,
+  },
+  {
+    path: "/admin/",
+    element: <Admin />,
+  },
+  {
+    path: "/admin/users",
+    element: <AdminUsers />,
+    loader: AdminUsersLoader,
+  },
+  {
+    path: "/admin/trackers",
+    element: <AdminTrackers />,
   },
   
 ]);
