@@ -1,6 +1,6 @@
 
 // this loader pulls the information from the backend and formats it for easy consumption
-import CircuitModel from "../models/Circuit.js";
+import CircuitModel from "../models/Circuit";
 
 export async function CircuitLoader() {
 
