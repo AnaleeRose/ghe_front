@@ -1,7 +1,7 @@
-import { validateSession } from "../models/Auth.js";
+import { validateSession } from "../models/Auth";
 import { Header } from "../components/Header.jsx"
 import { LoginSignup } from '../components/LoginSignup.jsx';
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { Button } from "./../components/Button";
 import TrackerForm from "./../hooks/TrackerForm";
 import UserProfile from './../components/UserProfile';
@@ -18,7 +18,7 @@ export const User = () => {
             <main className="user">
                 <div id="info">Welcome, {UserProfile.getName()}!</div>
                 <br/>
-                {UserProfile.getIsTrackerLinked() ? <TrackerInfo info={UserProfile.getTrackerInfo()}/> : <Button href='/user/tracker' btn_class="primary" text="Link your RL Tracker" />}
+                {UserProfile.getIsTrackerLinked() ? <TrackerInfo info={UserProfile.getTrackerInfo()}/> : <Button link='/user/tracker' btn_class="primary" text="Link your RL Tracker" />}
             </main>
         </>
     );
@@ -32,6 +32,11 @@ export const UserLogin = () => {
     var code = searchParams.get("code");
     let address;
 
+    if(sessionStorage.getItem("isLoggedIn")) {
+        address = process.env.REACT_APP_SITE_URL + "/user"
+        window.location.replace(address);
+    }
+    
     if (code) {
         address = process.env.REACT_APP_BACKEND_URL + `/auth/discord/`;
         try {
