@@ -1,9 +1,9 @@
 import { useSearchParams, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { Header } from "./../components/Header.jsx"
-import { Button } from "./../components/Button";
+import { Header } from "../components/Header.jsx"
+import { Button } from "../components/Button";
 import '../styles/styles.scss';
-import UserProfile from './../components/UserProfile';
+import UserProfile from '../components/UserProfile';
 
 export const AuthDiscord = () => {
     const { params } = useParams();
@@ -44,12 +44,15 @@ export const AuthDiscord = () => {
                         let discord_email = res.email;
                         let discord_access_token = res.access_token;
                         let discord_refresh_token = res.refresh_token;
+                        console.log("discord_access_token: " +  discord_access_token)
+                        console.log("discord_refresh_token: " +  discord_refresh_token)
 
                         UserProfile.setDiscordAccessToken(discord_access_token)
                         UserProfile.setDiscordRefreshToken(discord_refresh_token)
                         UserProfile.setDiscordID(discord_id)
                         UserProfile.setDiscordName(discord_username)
                         UserProfile.setEmail(discord_email)
+
                         sessionStorage.setItem('isLoggedIn', true);
 
                         address = process.env.REACT_APP_BACKEND_URL + `/auth/discord/`
@@ -62,20 +65,27 @@ export const AuthDiscord = () => {
                             },
                             credentials: "include",
                             body: JSON.stringify({
-                                discord_access_token,
-                                discord_refresh_token,
-                                email,
+                                discord_access_token: discord_access_token, 
+                                discord_refresh_token: discord_refresh_token, 
+                                email: email, 
+                                username: username, 
+                                discord_id: discord_id
                             }),
                         }).then(res => res.json())
                         .then((data) => {
                             console.error("backend response")
                             console.log(data)
-                            let user_info = data.message[0].data[0]
+                            if (data.message[0].status) {
+                                let user_info = data.message[0].data[0]
+                                UserProfile.setName(user_info.name)
+                                UserProfile.setUserID(user_info.id)
+                            }
+                            else {
+                                console.log ("login failed")
+                            }
 
-                            // sessionStorage.setItem('name', user_info.name);
-                            // sessionStorage.setItem('user_id', user_info.id);
-                            UserProfile.setName(user_info.name)
-                            UserProfile.setUserID(user_info.id)
+                            // failed to login
+                             
                         })
                         .then(() => {
                             // try {
@@ -93,10 +103,10 @@ export const AuthDiscord = () => {
                             //     console.log(e)
                             // }
 
-                            if (window.sessionStorage.getItem("isLoggedIn")) {
-                                address = process.env.REACT_APP_SITE_URL + "/user"
-                                window.location.replace(address);
-                            }
+                            // if (window.sessionStorage.getItem("isLoggedIn")) {
+                            //     address = process.env.REACT_APP_SITE_URL + "/user"
+                            //     window.location.replace(address);
+                            // }
                         })
 
                     } else {

@@ -3,11 +3,10 @@ import { createBrowserRouter } from "react-router-dom";
 
 import { Home } from "../pages/Home.jsx";
 import { CircuitLoader } from "../hooks/CircuitLoader.jsx";
+import { AdminUsersLoader } from "../hooks/AdminUsersLoader.jsx";
 import { Circuit } from "../pages/Circuit.jsx";
-import User from "../pages/User.jsx";
-import { AuthLoader } from "../hooks/AuthLoader.jsx";
-import { AuthDiscord, AuthLogout } from "../pages/Auth.jsx";
-
+import { User, UserLogin, UserLogout, UserLinkTracker } from "../pages/User.jsx";
+import { Admin, AdminUsers, AdminTrackers } from "../pages/Admin.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,14 +30,32 @@ const router = createBrowserRouter([
     element: <User />
   },
   {
-    path: "auth/discord",
-    element: <AuthDiscord />,
+    path: "user/discord",
+    element: <UserLogin />,
     // loader: AuthLoader,
   },
   {
-    path: "auth/logout",
-    element: <AuthLogout />,
+    path: "user/logout",
+    element: <UserLogout />,
   },
+  {
+    path: "/user/tracker",
+    element: <UserLinkTracker />,
+  },
+  {
+    path: "/admin/",
+    element: <Admin />,
+  },
+  {
+    path: "/admin/users",
+    element: <AdminUsers />,
+    loader: AdminUsersLoader,
+  },
+  {
+    path: "/admin/trackers",
+    element: <AdminTrackers />,
+  },
+  
 ]);
 
 export default router;

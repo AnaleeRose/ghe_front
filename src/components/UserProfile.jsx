@@ -1,11 +1,6 @@
 var UserProfile = (function() {
-    var full_name = "";
-    var discord_name = "";
-    var discord_email = "";
-    var discord_id = "";
-
     var getDiscordName = function() {
-      return window.sessionStorage.getItem('discord_username');    // Or pull this from cookie/localStorage
+      return sessionStorage.getItem('discord_username');    // Or pull this from cookie/localStorage
     };
   
     var setDiscordName = function(name) {
@@ -28,7 +23,8 @@ var UserProfile = (function() {
     };
 
     var getName = function() {
-      return window.sessionStorage.getItem('discord_id');    // Or pull this from cookie/localStorage
+      return sessionStorage.getItem("name");  
+        // Or pull this from cookie/localStorage
     };
   
     var setName = function(name) {
@@ -37,7 +33,7 @@ var UserProfile = (function() {
     };
 
     var getUserID = function() {
-      return window.sessionStorage.getItem('discord_id');    // Or pull this from cookie/localStorage
+      return window.sessionStorage.getItem('user_id');    // Or pull this from cookie/localStorage
     };
   
     var setUserID = function(id) {
@@ -45,6 +41,23 @@ var UserProfile = (function() {
       console.log("https://cdn.discordapp.com/avatars/" + id);
       // Also set this in cookie/localStorage
     };
+    
+    var setIsTrackerLinked = function(is_tracker_linked) {
+      sessionStorage.setItem('is_tracker_linked', false);
+      // sessionStorage.setItem('is_tracker_linked', is_tracker_linked);
+    }
+    var getIsTrackerLinked = function() {
+      return sessionStorage.getItem('is_tracker_linked');
+    }
+    
+    
+    var setTrackerInfo = function(is_tracker_info) {
+      sessionStorage.setItem('tracker_info', [{rl_username: "username", tracker_code: "01234"}]);
+      // sessionStorage.setItem('tracker_info', is_tracker_info);
+    }
+    var getTrackerInfo = function() {
+      return sessionStorage.getItem('tracker_info');
+    }
 
     var setDiscordAccessToken = function(token) {
       sessionStorage.setItem('discord_access_token', token);
@@ -78,6 +91,9 @@ var UserProfile = (function() {
       setEmail: setEmail,
       getName: getName,
       setName: setName,
+      setIsTrackerLinked: setIsTrackerLinked,
+      getIsTrackerLinked: getIsTrackerLinked,
+      setTrackerInfo: setTrackerInfo,
 
       setDiscordID: setDiscordID,
       getDiscordID: getDiscordID,
