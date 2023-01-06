@@ -1,14 +1,16 @@
+import { createContext } from 'react';
 import { Helmet } from "react-helmet";
 import { Header } from "../components/Header.jsx"
 import { HeadingBlurb } from "../components/HeadingBlurb.jsx"
 import '../styles/styles.scss';
+const PageName = createContext("home");
 
 export function Home() {
   console.log("REACT_APP_BACKEND_URL:" + process.env.REACT_APP_BACKEND_URL)
   console.log("REACT_APP_NODE_ENV:" + process.env.REACT_APP_NODE_ENV)
     return (
       <>
-        <Header />
+        <Header pageName="home" />
         <main  className="home">
           <div className="blurbContainer">
             {/* reuable bit of code for that heading blurb section that appears on most pages  */}

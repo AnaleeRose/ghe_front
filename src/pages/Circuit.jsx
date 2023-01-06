@@ -1,11 +1,12 @@
 import { useLoaderData } from "react-router-dom";
 import { Helmet } from "react-helmet";
-
+import { createContext } from 'react';
 import { Header } from "../components/Header.jsx";
 import { HeadingBlurb } from "../components/HeadingBlurb.jsx";
-import { Matches } from "../components/Matches.jsx";
-
+import { Matches } from "../components/Circuit/Matches";
 import '../styles/styles.scss';
+
+const PageName = createContext("circuit");
 
 // displays the circuit page
 export const Circuit = () => {
@@ -13,7 +14,7 @@ export const Circuit = () => {
 
     return (
         <>
-        <Header />
+        <Header pageName="circuit" />
         <main className="circuit">
           <section className="blurbContainer">
             <HeadingBlurb blurbOptions={blurbOptions} pageStyles={pageStyles} />

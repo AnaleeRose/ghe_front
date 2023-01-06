@@ -10,6 +10,9 @@ $white-dark: #a2a5ad;
 
 $text: $white;
 
+$error: #f00;
+$warning: orange;
+
 body {
     --primary: #ffb32e;
     --primary-dark: #C8840E;
@@ -24,4 +27,6 @@ body {
     --text: #fff;
 
     --trans: rgba(0,0,0,0);
+    --error: #f00;
+    --warning: orange;
 }
