@@ -9,12 +9,14 @@ import { Button } from "./../components/Button";
 import UserProfile from './../components/UserProfile';
 import '../styles/styles.scss';
 
+const PageName = React.createContext("Admin");
+
 
 export const Admin = () => {
     validateSession(true)
     return (
         <>
-            <Header />
+            <Header pageName="admin" />
             <main  className="admin admin-home">
                 <div>
                     <p>Hi admin-{UserProfile.getName()}!</p>
@@ -34,7 +36,7 @@ export const AdminUsers = () => {
 
     return (
         <>
-            <Header />
+            <Header pageName="admin" />
             <main  className="admin admin-manage-users">
                 <div>
                     <p>Manage Users</p>
@@ -52,7 +54,7 @@ export const AdminTrackers = () => {
     validateSession(true)
     return (
         <>
-            <Header />
+            <Header pageName="admin" />
             <main  className="admin admin-trackers">
                 <div>
                     <p>Verify Trackers</p>

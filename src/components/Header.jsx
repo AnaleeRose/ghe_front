@@ -10,15 +10,14 @@ export function Header(props) {
     let type = (props.type == null) ? "default" : props.type
     switch (type) {
         case "default":
-            return <MainHeader />
+            return <MainHeader pageName={props.pageName ? props.pageName : false} />
     
         default:
             return <></>;
     }
 
 }
-
-export function MainHeader() {
+export function MainHeader(props) {
 
     return (
         <>
@@ -32,7 +31,7 @@ export function MainHeader() {
                 <SocialMedia type="header" />
                 <Nav />
             </div>
-            <LoginSignup />
+            <LoginSignup type="popupVer" pageName={props.pageName} />
         </header>
         </>
       );

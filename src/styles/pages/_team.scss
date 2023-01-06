@@ -1,0 +1,47 @@
+main.team {
+    form {
+        .header {
+            font-size: 1.15rem;
+            margin: 0 0 .5rem;
+        }
+
+        .members {
+            .table-header {
+                display: flex;
+                font-size: 1rem;
+
+                p {
+                    margin: 0;
+                }
+                .isSub {
+                    width: 3.5rem;
+                }
+                .name {
+                    width: 15rem;
+                }
+            }
+
+            .member {
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                padding: 0 0 0.5rem 0;
+
+
+                .btn {
+                    color: $white;
+                    font-size: 1rem;
+                    margin: 0.25rem;
+                    margin-right: 1.75rem;
+                }
+
+                p:last-child {
+                    font-size: 1.15rem;
+                    margin: 0 .5rem;
+                    padding: 0;
+                    max-width: 15rem;
+                }
+            }
+        }
+    }
+}

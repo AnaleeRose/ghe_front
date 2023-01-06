@@ -1,0 +1,12 @@
+.searchbar {
+    margin: 2.5rem 0;
+    max-width: 35rem;
+
+    .header {
+        font-size: 1.15rem;
+        color: var(--white);
+    }
+}
+.disabled + .searchbar {
+    color: inherit;
+}

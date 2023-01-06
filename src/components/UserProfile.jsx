@@ -1,13 +1,18 @@
+import Common from "./../models/Common"
+
 var UserProfile = (function() {
     var getDiscordName = function() {
-      return sessionStorage.getItem('discord_username');    // Or pull this from cookie/localStorage
+      if (sessionStorage.getItem('discord_name') !== null) return sessionStorage.getItem('discord_name'); 
+      return false;    // Or pull this from cookie/localStorage
     };
   
     var setDiscordName = function(name) {
       sessionStorage.setItem('discord_name', name);
     };  
+
     var getEmail = function() {
-      return sessionStorage.getItem('email');    // Or pull this from cookie/localStorage
+      if (sessionStorage.getItem('email') !== null) return sessionStorage.getItem('email'); 
+      return false;
     };
   
     var setEmail = function(email) {
@@ -15,7 +20,8 @@ var UserProfile = (function() {
     };
 
     var getDiscordID = function() {
-      return window.sessionStorage.getItem('discord_id');    // Or pull this from cookie/localStorage
+      if (sessionStorage.getItem('discord_id') !== null) return sessionStorage.getItem('discord_id'); 
+      return false;
     };
   
     var setDiscordID = function(id) {
@@ -23,8 +29,8 @@ var UserProfile = (function() {
     };
 
     var getName = function() {
-      return sessionStorage.getItem("name");  
-        // Or pull this from cookie/localStorage
+      if (sessionStorage.getItem('name') !== null) return sessionStorage.getItem('name'); 
+      return false;
     };
   
     var setName = function(name) {
@@ -33,7 +39,8 @@ var UserProfile = (function() {
     };
 
     var getUserID = function() {
-      return window.sessionStorage.getItem('user_id');    // Or pull this from cookie/localStorage
+      if (sessionStorage.getItem('user_id') !== null) return sessionStorage.getItem('user_id'); 
+      return false;
     };
   
     var setUserID = function(id) {
@@ -43,28 +50,52 @@ var UserProfile = (function() {
     };
     
     var setIsTrackerLinked = function(is_tracker_linked) {
-      sessionStorage.setItem('is_tracker_linked', false);
-      // sessionStorage.setItem('is_tracker_linked', is_tracker_linked);
+      sessionStorage.setItem('is_tracker_linked', is_tracker_linked);
     }
-    var getIsTrackerLinked = function() {
-      return sessionStorage.getItem('is_tracker_linked');
+    var isTrackerLinked = function() {
+      if (sessionStorage.getItem('is_tracker_linked') === "true") {
+        return true;
+      } else {
+        return false;
+      }
     }
-    
-    
-    var setTrackerInfo = function(is_tracker_info) {
-      sessionStorage.setItem('tracker_info', [{rl_username: "username", tracker_code: "01234"}]);
-      // sessionStorage.setItem('tracker_info', is_tracker_info);
+
+    var setTeam = function(teamInfo) {
+      if (teamInfo) {
+        sessionStorage.setItem('team', JSON.stringify(teamInfo));
+      } else {
+        sessionStorage.setItem('team', false);
+      }
+    };
+
+    var getTeam = function() {
+      if (sessionStorage.getItem('team')) {
+        let team = JSON.parse(sessionStorage.team);
+        return team;
+      }
+      return false;
+    };
+
+    var getTeamID = function() {
+      if (sessionStorage.getItem('team')) {
+        let team = JSON.parse(sessionStorage.team);
+        if (Common.isInt(team.id)) {
+          return team.id;
+        }
+        return false;
+      }
+      return false;
     }
-    var getTrackerInfo = function() {
-      return sessionStorage.getItem('tracker_info');
-    }
+
+
 
     var setDiscordAccessToken = function(token) {
       sessionStorage.setItem('discord_access_token', token);
     };
 
     var getDiscordAccessToken = function() {
-      return sessionStorage.getItem('discord_access_token');
+      if (sessionStorage.getItem('discord_access_token') !== null) return sessionStorage.getItem('discord_access_token'); 
+      return false;
     };
 
     var setDiscordRefreshToken = function(token) {
@@ -72,7 +103,8 @@ var UserProfile = (function() {
     };
 
     var getDiscordRefreshToken = function() {
-      return sessionStorage.getItem('discord_refresh_token');
+      if (sessionStorage.getItem('discord_refresh_token') !== null) return sessionStorage.getItem('discord_refresh_token'); 
+      return false;
     };
 
     // var setPicturePath = function(id) {
@@ -82,6 +114,9 @@ var UserProfile = (function() {
     var getPicturePath = function() {
       return process.env.REACT_APP_SITE_URL + "imgs/";
     };
+
+    
+    
     
   
     return {
@@ -92,8 +127,10 @@ var UserProfile = (function() {
       getName: getName,
       setName: setName,
       setIsTrackerLinked: setIsTrackerLinked,
-      getIsTrackerLinked: getIsTrackerLinked,
-      setTrackerInfo: setTrackerInfo,
+      isTrackerLinked: isTrackerLinked,
+      setTeam: setTeam,
+      getTeam: getTeam,
+      getTeamID: getTeamID,
 
       setDiscordID: setDiscordID,
       getDiscordID: getDiscordID,
@@ -107,6 +144,6 @@ var UserProfile = (function() {
       getPicturePath: getPicturePath,
     }
   
-  })();
+})();
   
-  export default UserProfile;
+export default UserProfile;

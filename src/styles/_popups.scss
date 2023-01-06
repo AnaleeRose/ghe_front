@@ -1,0 +1,72 @@
+.popup {
+    background-color: var(--white);
+    color: var(--neutral);
+    left: calc(50% - 10rem);
+    padding: 3rem 1.5rem;
+    position: fixed;
+    transition: opacity 1s ease-in-out;
+    top: 10vh;
+    max-width: 20rem;
+    box-sizing: border-box;
+    z-index: 2;
+
+    &.hidden {
+        opacity: 0;
+        left: -300vw;
+    }
+
+    &>.header {
+        color: var(--dark-neutral);
+        font-size: 1.25rem;
+        padding: 0 0 1rem;
+    }
+
+    .close {
+        position: absolute;
+        top: .5rem;
+        right: .5rem;
+    }
+}
+
+.popup-bg {
+    animation: .15s forwards fadeIn;
+    background-color: rgba(0,0,0,.5);
+    height: 100vh;
+    left: 0; 
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 1;
+    
+    &.hidden {
+        animation: .2s forwards fadeOut;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        left: 0;
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 0;
+    }
+    100% {
+        left: -300vw;
+    }
+}
+
+.popup-login-signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

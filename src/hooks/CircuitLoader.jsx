@@ -6,6 +6,8 @@ export async function CircuitLoader() {
 
     // pull data
     var json_data = await CircuitModel.getCircuitData(1);
+    console.log("json_data")
+    console.log(json_data)
     var data = [];
 
     // create traditional array from data

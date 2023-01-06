@@ -1,0 +1,60 @@
+.form {
+    font-size: 1.15rem;
+    color: var(--white);
+
+    .header {
+        font-size: 1.35rem;
+        margin-bottom: 2rem;
+    }
+
+    .alert {
+        display: block;
+
+        &.error {
+            color: var(--error);
+        }        
+
+        &.warning {
+            color: var(--warning);
+        }
+    }
+
+    .input-container {
+        border-left: 1.5px solid white;
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        padding: .5rem 0 .5rem 0.75rem;
+        margin-bottom: 1rem;
+
+        input {
+            color: var(--white);
+            padding: .35rem;
+            border: 2px solid var(--white-dark);
+            border-radius: 3px;
+            max-width: 20rem;
+            &.long {
+                max-width: 40rem;
+            }
+        }
+
+        select {
+            background: var(--white);
+            width: 13rem;
+        }
+    }
+
+    .input-container:last-of-type {
+        margin-bottom: 1.5rem;
+    }
+
+    .fakeCheck {
+        background-color: unset;
+        border: 2px solid $white;
+        height: .75rem;
+        width: .75rem;
+        &.checked {
+            background-color: $white;
+        }
+    }
+}
