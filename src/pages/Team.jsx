@@ -36,7 +36,10 @@ export const TeamDelete = () => {
                 let res =  await fetchTeamInfo(false, UserProfile.getTeamID())
                 console.log(res)
                 if (res.status) {
-                    setTeamData({team_name: res.data.name, region: res.data.region, type_id: res.data.type_id});
+                    console.log("fetchTeamInfo")
+                    console.log(res)
+                    let team_data = res.team_data;
+                    setTeamData({team_name: team_data.name, region: team_data.region, type_id: team_data.type_id});
                 } else {
                     setTeamData(false);
                 }
@@ -56,7 +59,7 @@ export const TeamDelete = () => {
                 </>)}
             </>):(<>
                 <p>You're not currently in a team...</p>
-                <Link to="/team/create" className="btn btn-trans">Create a Team?</Link>
+                <Link to="/team/create" className="btn btn-trans simple">Create a Team?</Link>
             </>)}
             </main>
         </>
@@ -76,7 +79,10 @@ export const TeamManage = () => {
                 let res =  await fetchTeamInfo(false, UserProfile.getTeamID())
                 console.log(res)
                 if (res.status) {
-                    setTeamData({team_name: res.data.name, region: res.data.region, type_id: res.data.type_id});
+                    console.log("fetchTeamInfo")
+                    console.log(res)
+                    let team_data = res.team_data;
+                    setTeamData({team_name: team_data.name, region: team_data.region, type_id: team_data.type_id});
                 } else {
                     setTeamData(false);
                 }
@@ -97,7 +103,7 @@ export const TeamManage = () => {
                 </>)}
             </>):(<>
                 <p>You're not currently in a team...</p>
-                <Link to="/team/create" className="btn btn-trans">Create a Team?</Link>
+                <Link to="/team/create" className="btn btn-trans simple">Create a Team?</Link>
             </>)}
             </main>
         </>

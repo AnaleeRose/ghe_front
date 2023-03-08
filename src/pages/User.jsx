@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import { validateSession } from "../models/Auth";
 import { Header } from "../components/Header.jsx"
 import '../styles/styles.scss';
@@ -24,8 +24,9 @@ export const User = () => {
             <main className="user">
                 <div id="info">Welcome, {UserProfile.getName()}!</div>
                 <br/>
-                {UserProfile.isTrackerLinked() ? <TrackerInfo /> : <Button link='/user/tracker' btn_class="primary" text="Link your RL Tracker" />}
-                {UserProfile.getTeam() ? <TeamInfo /> : <Button link='/team/create' btn_class="primary" text="Create a Team" />}
+                {UserProfile.isTrackerLinked() ? <TrackerInfo /> : <Link to="/user/tracker" className="btn btn-trans simple">Link your RL Tracker</Link>}
+                
+                {UserProfile.getTeam() ? <TeamInfo /> : <Link to="/team/create" className="btn btn-trans simple">Create a Team</Link>}
             </main>
         </>
     );
@@ -192,30 +193,35 @@ export const UserLinkTracker = () => {
     const [trackerData , setTrackerData] = useState(null)
 
     useEffect(()=>{
-        console.log("UserProfile.getTeam()");
-        console.log(UserProfile.getTeam());
+        console.log("UserProfile.isTrackerLinked()");
+        console.log(UserProfile.isTrackerLinked());
+        console.log("trackerData1");
+        console.log(trackerData);
         if (UserProfile.isTrackerLinked()) {
-            const fetchData = async() => {
+            (async() => {
                 let res =  await fetchTrackerInfo()
                 console.log("res - user tracker")
                 console.log(res)
                 if (res.status) {
                     setTrackerData({rl_username: res.data.rl_username, platform: res.data.platform, tracker_link: res.data.tracker_link, rank: res.data.rank });
                 } else {
-                    setTrackerData(false);
+                    setTrackerData("empty");
                 }
-            }
-            fetchData();
+            })()
         }
+        setTrackerData("empty");
     }, [])
-
     return (
         <>
         <Header pageName="user" />
             <main className="user linkTracker">
                     {(trackerData) ? (<>
+                        {console.log("trackerData2")}
+                        {console.log(trackerData)}
                         <TrackerForm tracker_data={trackerData} />
                     </>): (<>
+                        {console.log("trackerData2")}
+                        {console.log(trackerData)}
                         <p>Loading...</p>
                     </>)}
             </main>

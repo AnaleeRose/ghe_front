@@ -51,33 +51,33 @@ export const FindMembers = (props) => {
 
 }
 
-const fetchSearchName = async(search_term) => {
-    let address = process.env.REACT_APP_BACKEND_URL + `/user/discord`;
-    console.log("search_term2")
-    console.log(search_term)
-    try {
-        let response = await fetch(address, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            credentials: "include",
-            body: new URLSearchParams({
-                'discord_name': search_term,
-            })
-        });
-        let json = await response.json();
-        if (json.data) {
-            return { status: json.status, data: json.data };
-        } else {
-            return { status: json.status };
-        }
-    } catch(e) {
-        console.log("Couln't send to backend")
-        console.log(e)
-        return { status: false };
-    }
-}
+// const fetchSearchName = async(search_term) => {
+//     let address = process.env.REACT_APP_BACKEND_URL + `/user/discord`;
+//     console.log("search_term2")
+//     console.log(search_term)
+//     try {
+//         let response = await fetch(address, {
+//             method: "POST",
+//             headers: {
+//                 'Content-Type': 'application/x-www-form-urlencoded'
+//             },
+//             credentials: "include",
+//             body: new URLSearchParams({
+//                 'discord_name': search_term,
+//             })
+//         });
+//         let json = await response.json();
+//         if (json.data) {
+//             return { status: json.status, data: json.data };
+//         } else {
+//             return { status: json.status };
+//         }
+//     } catch(e) {
+//         console.log("Couln't send to backend")
+//         console.log(e)
+//         return { status: false };
+//     }
+// }
 
 
 const fetchUserData = async() => {

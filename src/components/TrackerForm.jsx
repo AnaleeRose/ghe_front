@@ -6,9 +6,11 @@ import { Link } from "react-router-dom";
 // Form for tracker page, needs styles
 export default function TrackerForm(props) {
     const [updateSuccessful, setUpdateSuccessful] = useState(null);
+    let tracker_data = (props.tracker_data && props.tracker_data!== "empty") ? props.tracker_data.data : null
     const { register, handleSubmit, formState: { errors } } = useForm({
-        defaultValues: props.tracker_data
+        defaultValues: tracker_data
     })
+
     const onSubmit = data => {
         setUpdateSuccessful(false)
         let address = process.env.REACT_APP_BACKEND_URL + `/user/tracker/` + UserProfile.getUserID();
@@ -25,7 +27,6 @@ export default function TrackerForm(props) {
                     'platform': data.platform,
                     'tracker_link': data.tracker_link,
                     'rank': data.rank,
-                    'rl_username': data.rl_username
                 })
             }).then(res => res.json())
             .then((res) => {

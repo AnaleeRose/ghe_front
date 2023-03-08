@@ -79,7 +79,7 @@ export const TeamDeleteForm = (props) => {
         return (
             <>
                 <p>You're not currently in a team...</p>
-                <Link to="/team/create" className="btn btn-trans">Create a Team?</Link>
+                <Link to="/team/create" className="btn btn-trans simple">Create a Team?</Link>
             </>
         );
     }

@@ -7,22 +7,27 @@ export const SearchBar = (props) => {
         {
             id: "john",
             name: "John Doe",
+            rl_username: "test#0001"
         },
         {
             id: "jane",
             name: "Jane Doe",
+            rl_username: "test#0002"
         },
         {
             id: "mary",
             name: "Mary Phillips",
+            rl_username: "test#0003"
         },
         {
             id: "robert",
             name: "Robert",
+            rl_username: "test#0004"
         },
         {
             id: "karius",
             name: "Karius",
+            rl_username: "test#0005"
         },
     ];
 
@@ -63,7 +68,7 @@ export const SearchBar = (props) => {
     return (
         <ReactSearchAutocomplete
             items={items}
-            fuseOptions={{ key: ["name"] }}
+            fuseOptions={{ key: ["name", "rl_username"] }}
             onSearch={handleOnSearch}
             onHover={handleOnHover}
             onFocus={handleOnFocus}

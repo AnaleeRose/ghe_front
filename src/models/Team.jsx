@@ -12,7 +12,7 @@ export const fetchTeamInfo = async(data_only = false, team_id) => {
         let json = await response.json();
         if (json.status) {
             if (data_only) return json.data;
-            return { status: true, data: json.data};
+            return { status: true, team_data: json.data.team_data, team_users: json.data.team_users};
         } else {
             console.log("res failed")
             if (data_only) return false;

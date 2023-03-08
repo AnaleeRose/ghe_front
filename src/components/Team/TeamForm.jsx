@@ -42,20 +42,14 @@ export const TeamForm = (props) => {
 
             setSelected(newSelected);
             setAllMemberInfo(new_allmemberinfo);
-            setValue("member_ids", new_allmemberinfo)
+            setValue("member_info", new_allmemberinfo)
         })();
     };
 
     const updateMemberIDs = () => {
         let new_allmemberinfo = null;
         selected.forEach((member, key)=>{
-            console.log("updateMemberIDs member")
-            console.log(member)
-            
-            console.log("updateMemberIDs member id...?")
-            console.log(member[0][1])
-
-            if (new_allmemberinfo) {
+              if (new_allmemberinfo) {
                 new_allmemberinfo = new_allmemberinfo + member[0][1] + '|' + member[2] + ","
             } else {
                 new_allmemberinfo = new_allmemberinfo + member[0][1] + '|' + member[2] + ","
@@ -63,7 +57,7 @@ export const TeamForm = (props) => {
         })
 
         setAllMemberInfo(new_allmemberinfo);
-        setValue("member_ids", new_allmemberinfo)
+        setValue("member_info", new_allmemberinfo)
     }
 
     const editMember = (e, id, edit ) => {
@@ -72,26 +66,11 @@ export const TeamForm = (props) => {
         console.log(allMemberInfo)
         console.log("CLICKED")
         console.log(e)
-        let members = allMemberInfo.split(",");
-        let new_value = false, replace_id;
-        replace_id = id;
-
-
+        let replace_id = id;
         let newSelected = selected.map((x) => x);
             
         newSelected.forEach((member, key)=>{
-            console.log("selected = member")
-            console.log(member)
-            console.log("COMPARISON")
-            console.log(member[0])
-            console.log(member[0][1])
-            console.log(typeof member[0][1])
-            console.log("COMPARISON2")
-            console.log(member[2])
             if (parseInt(member[0][1]) === replace_id) {
-                console.log(new_value)
-                console.log("b4")
-                console.log(member[2])
                 switch (edit) {
                     case "sub":
                         member[2] = 1
@@ -104,16 +83,9 @@ export const TeamForm = (props) => {
                     default:
                         return;
                 }
-                console.log("after")
-                console.log(member[2])
             }
         })
         
-        console.log("selected1")
-        console.log(selected)
-        setSelected(newSelected);
-        console.log("selected2")
-        console.log(selected)
         updateMemberIDs()
     }
 
@@ -122,37 +94,37 @@ export const TeamForm = (props) => {
         setCreateResponse({status: false})
         let address = (props.stage === "manage") ? process.env.REACT_APP_BACKEND_URL + `/team/edit/` : process.env.REACT_APP_BACKEND_URL + `/team/create/`
         console.log("SUBMITTED")
-        console.log(data.member_ids)
-        // try {
-        //     fetch(address, {
-        //         method: "POST",
-        //         headers: {
-        //             'Content-Type': 'application/x-www-form-urlencoded'
-        //         },
-        //         credentials: "include",
-        //         body: new URLSearchParams({
-        //             'team_lead_id': UserProfile.getUserID(),
-        //             'name': data.team_name,
-        //             'region': data.region,
-        //             'type_id': data.type_id,
-        //             'team_id': pass_team_id,
-        //             'member_ids': data.member_ids
-        //         })
-        //     }).then(res => res.json())
-        //     .then((res) => {
-        //         console.log("res")
-        //         console.log(res)
-        //         console.log(res.status)
-        //         setCreateResponse({status: res.status})
-        //         if (res.status) {
-        //             UserProfile.setTeam(res.data);
-        //         }
-        //     })
-        // } catch(e) {
-        //     console.log("Couln't send to backend")
-        //     console.log(e)
-        //     setCreateResponse({status: false})
-        // }
+        console.log(data)
+        try {
+            fetch(address, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                credentials: "include",
+                body: new URLSearchParams({
+                    'team_lead_id': UserProfile.getUserID(),
+                    'name': data.team_name,
+                    'region': data.region,
+                    'type_id': data.type_id,
+                    'team_id': pass_team_id,
+                    'member_info': data.member_info
+                })
+            }).then(res => res.json())
+            .then((res) => {
+                console.log("res")
+                console.log(res)
+                console.log(res.status)
+                setCreateResponse({status: res.status})
+                if (res.status) {
+                    UserProfile.setTeam(res.data);
+                }
+            })
+        } catch(e) {
+            console.log("Couln't send to backend")
+            console.log(e)
+            setCreateResponse({status: false})
+        }
     }
 
     
@@ -207,17 +179,19 @@ export const TeamForm = (props) => {
 
                     <div className="input-container members">
                         <p className='header'>Members</p>
-                        <div class="table-header">
+                        <div className="table-header">
                                 <p className="isSub">Is Sub</p>
                                 <p className="name">Discord Name</p>
-                            <p></p>
                         </div>
+                        {errors.member_info && errors.member_info.type === "required" && (
+                            <span role="alert" className="alert error" id="member_info_missing">Please add members</span>
+                        )}
                     {(selected) ? (
                         <>
                             {(selected.map((member) => {
                                  return(
                                     <>
-                                        <div class="member">
+                                        <div className="member">
                                             {(member[2]) ? 
                                                 <p className="a11y-text btn fakeCheck checked" onClick={(e) => editMember(e, member[0][1], "primary")}><span>Make Primary</span></p>
                                                 :
@@ -236,11 +210,11 @@ export const TeamForm = (props) => {
                     {(selected) ? (<p>selected: {selected}</p>) : false} */}
                     <FindMembers  selected={selected} onChangeSelected={onChangeSelected} />
 
-                    <input type="text" ref={register} className="hidden" {...register("member_ids", {required: false})} />
+                    <input type="text" ref={register} className="hidden" {...register("member_info", {required: true})} />
 
                     <div className="btns">
                         <input type="submit" value={props.stage === "manage" ? "Edit Team" : "Create Team"} className="btn btn-submit simple" />
-                        {props.stage === "create" ? <Link to="/team/delete" className="btn btn-danger simple">Delete Team</Link> : false}
+                        {props.stage === "manage" ? <Link to="/team/delete" className="btn btn-danger simple">Delete Team</Link> : false}
                         
                     </div>
                 </form>
@@ -271,8 +245,10 @@ const fetchTeamInfo = async(data_only = false, team_id) => {
             })
         let json = await response.json();
         if (json.status) {
+            console.log("JSON RES - TEAM FORM")
+            console.log(json)
             if (data_only) return json.data;
-            return { status: true, team_data: json.data};
+            return { status: true, team_data: json.data.team_data, team_users: json.data.team_users};
         } else {
             console.log("res failed")
             if (data_only) return false;
