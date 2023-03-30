@@ -28,8 +28,17 @@ export const TeamForm = (props) => {
             }
 
             let user_info = new_info;
-            user_info[2] = 0
+            console.log("user_info")
+            console.log(user_info)
+            user_info[2] = 0;
+            console.log("user_info2")
+            console.log(user_info)
             newSelected.push(user_info)
+            console.log("newSelected")
+            console.log(newSelected)
+
+            console.log("new_allmemberinfo")
+            console.log(new_allmemberinfo)
             newSelected.forEach((array_item)=>{
                 count++
                 let isSub = (count > 1) ? 1 : 0
@@ -40,6 +49,11 @@ export const TeamForm = (props) => {
                 }
             })
 
+            console.log("newSelected2")
+            console.log(newSelected)
+            console.log("new_allmemberinfo2")
+            console.log(new_allmemberinfo)
+
             setSelected(newSelected);
             setAllMemberInfo(new_allmemberinfo);
             setValue("member_info", new_allmemberinfo)
@@ -49,7 +63,7 @@ export const TeamForm = (props) => {
     const updateMemberIDs = () => {
         let new_allmemberinfo = null;
         selected.forEach((member, key)=>{
-              if (new_allmemberinfo) {
+            if (new_allmemberinfo) {
                 new_allmemberinfo = new_allmemberinfo + member[0][1] + '|' + member[2] + ","
             } else {
                 new_allmemberinfo = new_allmemberinfo + member[0][1] + '|' + member[2] + ","
@@ -125,6 +139,13 @@ export const TeamForm = (props) => {
             console.log(e)
             setCreateResponse({status: false})
         }
+    }
+
+    if (props.status === "manage" && props.team_users.length > 0) {
+        props.team_users.forEach(element => {
+            // let newSelected;
+            // setSelected(newSelected);
+        });
     }
 
     
