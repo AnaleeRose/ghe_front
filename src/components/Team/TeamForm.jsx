@@ -10,10 +10,46 @@ export const TeamForm = (props) => {
     const [createResponse, setCreateResponse] = useState(null);
     const [selected, setSelected] = useState(null);
     const [allMemberInfo, setAllMemberInfo] = useState(null);
+    const [deletedMembers, setDeletedMembers] = useState(null);
     
     const { register, handleSubmit, formState: { errors }, setValue } = useForm({
         defaultValues: props.team_data
     })
+
+    useEffect(() => {
+        console.log("I RASN")
+        if (props.stage === "manage" && props.team_data.team_users) {
+            props.team_data.team_users.forEach(member => {
+                console.log("team_users member")
+                console.log(member)
+                let member_formatted = [];
+                member_formatted[0] = ["id", member.id];
+                member_formatted[1] = ["name", member.discord_name];
+                member_formatted[2] = (member.isSub) ? 1 : 0;
+                console.log("member_formatted");
+                console.log(member_formatted);
+                onChangeSelected(member_formatted);
+                // let members = props.team_users;
+                // let newSelected = [];
+                // let new_allmemberinfo;
+                // let isSub;
+        
+                // members.forEach(member => {
+                //     isSub = (member.isSub) ? 1 : 0;
+                //     new_allmemberinfo = new_allmemberinfo + member.discord_name + '|' + isSub + ","
+                // });
+                
+                // setSelected(newSelected);
+                // setAllMemberInfo(new_allmemberinfo);
+                // setValue("member_info", new_allmemberinfo)
+            });
+        } else {
+            if (props.stage !== "manage") console.log("props.status");
+            if (!props.team_users) console.log("PROPS");
+            console.log("props")
+            console.log(props)
+        }
+    }, [])
 
     const onChangeSelected = (new_info) => {
         (async () => {
@@ -103,6 +139,42 @@ export const TeamForm = (props) => {
         updateMemberIDs()
     }
 
+
+    
+    const deleteMember = (e, id) => {
+        e.preventDefault();
+        let replace_id = id;
+        let newDeletedMembers;
+        let newSelected = selected.map((x) => x);
+        console.log("newSelected before");
+        console.log(newSelected);
+        newSelected.forEach((member, key)=>{
+            console.log(key);
+            if (parseInt(member[0][1]) === replace_id) {
+                newSelected.splice(key, 1);
+
+                if (deletedMembers) {
+                    newDeletedMembers = deletedMembers + "," + replace_id
+                } else {
+                    newDeletedMembers = "," + replace_id
+                }
+            
+                console.log("newSelected after");
+                console.log(newSelected);
+                console.log("newDeletedMember");
+                console.log(newDeletedMembers);
+                console.log("deletedMembers before");
+                console.log(deletedMembers);
+            }
+        })
+
+        setDeletedMembers(newDeletedMembers);
+        console.log("deletedMembers after");
+        console.log(deletedMembers);
+        setSelected(newSelected);
+        updateMemberIDs();
+    }
+
     const onSubmit = data => {
         let pass_team_id = (props.team_id ? props.team_id : false)
         setCreateResponse({status: false})
@@ -122,7 +194,8 @@ export const TeamForm = (props) => {
                     'region': data.region,
                     'type_id': data.type_id,
                     'team_id': pass_team_id,
-                    'member_info': data.member_info
+                    'member_info': data.member_info,
+                    'deleted_members': deletedMembers
                 })
             }).then(res => res.json())
             .then((res) => {
@@ -141,14 +214,6 @@ export const TeamForm = (props) => {
         }
     }
 
-    if (props.status === "manage" && props.team_users.length > 0) {
-        props.team_users.forEach(element => {
-            // let newSelected;
-            // setSelected(newSelected);
-        });
-    }
-
-    
 
     if (createResponse == null || !createResponse.status) {
         return (
@@ -203,6 +268,7 @@ export const TeamForm = (props) => {
                         <div className="table-header">
                                 <p className="isSub">Is Sub</p>
                                 <p className="name">Discord Name</p>
+                                <p className="delete">Delete Member</p>
                         </div>
                         {errors.member_info && errors.member_info.type === "required" && (
                             <span role="alert" className="alert error" id="member_info_missing">Please add members</span>
@@ -218,7 +284,8 @@ export const TeamForm = (props) => {
                                                 :
                                                 <p className="a11y-text btn fakeCheck" onClick={(e) => editMember(e, member[0][1], "sub")}><span>Make Sub</span></p> 
                                             }
-                                            <p>{member[1][1]}</p>
+                                            <p className="name">{member[1][1]}</p>
+                                            <p className="a11y-text btn delete" onClick={(e) => deleteMember(e, member[0][1])}><span>Delete Member</span></p>
                                         </div>
                                     </>
                                 )
@@ -234,7 +301,7 @@ export const TeamForm = (props) => {
                     <input type="text" ref={register} className="hidden" {...register("member_info", {required: true})} />
 
                     <div className="btns">
-                        <input type="submit" value={props.stage === "manage" ? "Edit Team" : "Create Team"} className="btn btn-submit simple" />
+                        <input type="submit" value={props.stage === "manage" ? "Save Changes" : "Create Team"} className="btn btn-submit simple" />
                         {props.stage === "manage" ? <Link to="/team/delete" className="btn btn-danger simple">Delete Team</Link> : false}
                         
                     </div>
@@ -245,11 +312,21 @@ export const TeamForm = (props) => {
         );
     } else if (createResponse.status) {
         return (
+            (props.stage === "manage") ? 
+        (
+            <>
+                <p>Team updated!</p>
+                {/* <Link to="/team/create?users=true">Add Members</Link> */}
+            </>
+        )
+        :
+        (
             <>
                 <p>Team created!</p>
                 {/* <Link to="/team/create?users=true">Add Members</Link> */}
             </>
-        );
+        ))
+        ;
     }
 }
 

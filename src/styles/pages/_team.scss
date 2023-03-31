@@ -19,6 +19,9 @@ main.team {
                 .name {
                     width: 15rem;
                 }
+                .delete {
+                    width: 7rem;
+                }
             }
 
             .member {
@@ -32,14 +35,20 @@ main.team {
                     color: $white;
                     font-size: 1rem;
                     margin: 0.25rem;
-                    margin-right: 1.75rem;
+                    margin-right: 2.2rem;
                 }
 
-                p:last-child {
+                .name {
                     font-size: 1.15rem;
                     margin: 0 .5rem;
                     padding: 0;
-                    max-width: 15rem;
+                    width: 14rem;
+                }
+
+                .delete {
+                    height: 1rem;
+                    width: 1rem;
+                    background: $error;
                 }
             }
         }

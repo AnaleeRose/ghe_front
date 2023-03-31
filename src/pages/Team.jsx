@@ -58,8 +58,8 @@ export const TeamDelete = () => {
                     <p>Loading...</p>
                 </>)}
             </>):(<>
-                <p>You're not currently in a team...</p>
-                <Link to="/team/create" className="btn btn-trans simple">Create a Team?</Link>
+                <p>Success!</p>
+                <Link to="/team/create" className="btn btn-trans simple">Create a New Team?</Link>
             </>)}
             </main>
         </>
@@ -77,12 +77,11 @@ export const TeamManage = () => {
         if (UserProfile.getTeam()) {
             const fetchData = async() => {
                 let res =  await fetchTeamInfo(false, UserProfile.getTeamID())
-                console.log(res)
                 if (res.status) {
                     console.log("fetchTeamInfo")
                     console.log(res)
                     let team_data = res.team_data;
-                    setTeamData({team_name: team_data.name, region: team_data.region, type_id: team_data.type_id});
+                    setTeamData({team_name: team_data.name, region: team_data.region, type_id: team_data.type_id, team_users: res.team_users});
                 } else {
                     setTeamData(false);
                 }

@@ -46,7 +46,9 @@ export const SearchBar = (props) => {
 
     const handleOnSelect = (item) => {
         let array = Object.entries(item)
-        props.onChangeSelected(array)
+        console.log("handleOnSelect array")
+        console.log(array)
+        props.onChangeSelected(array);
     };
 
     const handleOnFocus = () => {
