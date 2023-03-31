@@ -1,0 +1,26 @@
+.tabNavList {
+    list-style-type: none;
+}
+
+.tabNavList > li {
+    float: left;
+}
+
+.tabNavList > li > a {
+    padding: 0.5em;
+    width: 2em;
+    margin-right: 1em;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.tabNavBtns {
+    background-color: #ffb32e;
+    color: $neutral;
+    border-radius: 0.5em;
+}
+
+.tabNavBtns:hover {
+    background-color: white;
+    cursor: pointer;
+}

@@ -5,6 +5,7 @@ import { Header } from "../components/Header.jsx";
 import { HeadingBlurb } from "../components/HeadingBlurb.jsx";
 import { Matches } from "../components/Circuit/Matches";
 import '../styles/styles.scss';
+import { Link } from "react-router-dom";
 
 const PageName = createContext("circuit");
 
@@ -16,14 +17,19 @@ export const Circuit = () => {
         <>
         <Header pageName="circuit" />
         <main className="circuit">
-          <section className="blurbContainer">
+          <ul className="tabNavList">
+            <li><Link to="/circuit/3s" className="tabNavBtns">3s</Link></li>
+            <li><Link to="/circuit/2s" className="tabNavBtns">2s</Link></li>
+            <li><Link to="/circuit/1s" className="tabNavBtns">1s</Link></li>
+          </ul>
+          {/* <section className="blurbContainer">
             <HeadingBlurb blurbOptions={blurbOptions} pageStyles={pageStyles} />
             <div className="blurbContent">
-              {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat.</p>
-              <p>May the best team win.</p> */}
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat.</p>
+              <p>May the best team win.</p>
             </div>
-          </section>
-          <Matches matches={match_info}/>
+          </section> */}
+          {/* <Matches matches={match_info}/> */}
         </main>
         </>
     );
