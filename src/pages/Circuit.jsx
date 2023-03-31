@@ -19,8 +19,8 @@ export const Circuit = () => {
           <section className="blurbContainer">
             <HeadingBlurb blurbOptions={blurbOptions} pageStyles={pageStyles} />
             <div className="blurbContent">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat.</p>
-              <p>May the best team win.</p>
+              {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat.</p>
+              <p>May the best team win.</p> */}
             </div>
           </section>
           <Matches matches={match_info}/>

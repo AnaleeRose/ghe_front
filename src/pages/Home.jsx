@@ -15,10 +15,10 @@ export function Home() {
           <div className="blurbContainer">
             {/* reuable bit of code for that heading blurb section that appears on most pages  */}
             <HeadingBlurb blurbOptions={blurbOptions} pageStyles={pageStyles} />
-            <div className="blurbContent">
+            {/* <div className="blurbContent">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat.</p>
               <p>May the best team win.</p>
-            </div>
+            </div> */}
           </div>
         </main>
       </>
