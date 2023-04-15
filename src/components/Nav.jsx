@@ -15,10 +15,10 @@ export function Nav(props) {
 function MainNav(props) {
     return (
         <nav>
-            <Button link="/circuit/1" btn_class="primary" text="Circuit" />
+            <Button link="/circuit/3s" btn_class="primary" text="Circuit" />
             <Button link="/user" btn_class="primary" text="Profile" />
             <Button link="/about" btn_class="primary" text="About Us" />
-            <Button link="/circuit/1" btn_class="secondary" text="Donate" />
+            <Button link="/circuit/3s" btn_class="secondary" text="Donate" />
         </nav>
     );
 }
