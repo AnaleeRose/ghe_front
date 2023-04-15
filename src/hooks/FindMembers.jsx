@@ -10,10 +10,15 @@ export const FindMembers = (props) => {
     
     useEffect(() => {
         (async () => {
-            console.log("all_users_data")
             let all_users_data = await fetchUserData();
             console.log("all_users_data")
             console.log(all_users_data)
+
+            // remove the current user from the list
+            let user_id = UserProfile.getUserID();
+            var user_index = all_users_data.map(function(o) { return o.id; }).indexOf(user_id);
+            all_users_data.splice(user_index, 1);
+
             setAllUsersInfo(all_users_data)
         })();
     }, [])
@@ -42,6 +47,7 @@ export const FindMembers = (props) => {
                 {/* {(selected) ? <><p>Selected: {selected}</p></> : false} */}
                 {(allUsers) ? <span className="disabled"></span> : false}
                 <SearchBar selected={props.selected} onChangeSelected={props.onChangeSelected} placeholder={UserProfile.getName()} data={allUsers}/>
+                <span>Search by Discord Name</span>
             </div>
         </>
     );

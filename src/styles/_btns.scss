@@ -77,6 +77,14 @@
         background-color: $error;
         color: var(--neutral-dark);
     }
+
+    &.btn-mini {
+        background-color: unset;
+        border: 2px solid transparent;
+        color: #fff;
+        height: 0.75rem;
+        width: 0.75rem;
+    }
 }
 
 

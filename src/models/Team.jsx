@@ -1,6 +1,8 @@
 // helper functions
-export const fetchTeamInfo = async(data_only = false, team_id) => {
+export const fetchTeamInfo = async(team_id, data_only = false) => {
     let address = process.env.REACT_APP_BACKEND_URL + `/team/` + team_id
+    console.log("fetchTeamInfo address")
+    console.log(address)
     try {
         let response = await fetch(address, {
             method: "GET",

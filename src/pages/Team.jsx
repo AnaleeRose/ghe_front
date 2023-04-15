@@ -30,10 +30,11 @@ export const TeamDelete = () => {
     const [teamData , setTeamData] = useState(null)
 
     useEffect(()=>{
+        console.log("UserProfile.getTeam()");
         console.log(UserProfile.getTeam());
         if (UserProfile.getTeam()) {
             (async () => {
-                let res =  await fetchTeamInfo(false, UserProfile.getTeamID())
+                let res =  await fetchTeamInfo(UserProfile.getTeamID())
                 console.log(res)
                 if (res.status) {
                     setTeamData({team_name: res.data.name, region: res.data.region, type_id: res.data.type_id});
@@ -56,7 +57,7 @@ export const TeamDelete = () => {
                 </>)}
             </>):(<>
                 <p>You're not currently in a team...</p>
-                <Link to="/team/create" className="btn btn-trans">Create a Team?</Link>
+                <Link to="/team/create" className="btn btn-trans simple">Create a Team?</Link>
             </>)}
             </main>
         </>
@@ -70,13 +71,17 @@ export const TeamManage = () => {
     const [teamData , setTeamData] = useState(null)
 
     useEffect(()=>{
+        console.log("UserProfile.getTeam()");
         console.log(UserProfile.getTeam());
+        console.log("UserProfile.getTeamID()")
+        console.log(UserProfile.getTeamID())
         if (UserProfile.getTeam()) {
             const fetchData = async() => {
-                let res =  await fetchTeamInfo(false, UserProfile.getTeamID())
+                let res =  await fetchTeamInfo(UserProfile.getTeamID())
+                console.log("TeamManage res")
                 console.log(res)
                 if (res.status) {
-                    setTeamData({team_name: res.data.name, region: res.data.region, type_id: res.data.type_id});
+                    setTeamData({team_name: res.data.team_data.name, region: res.data.team_data.region, type_id: res.data.team_data.type_id, team_users: res.data.team_users});
                 } else {
                     setTeamData(false);
                 }
@@ -97,7 +102,7 @@ export const TeamManage = () => {
                 </>)}
             </>):(<>
                 <p>You're not currently in a team...</p>
-                <Link to="/team/create" className="btn btn-trans">Create a Team?</Link>
+                <Link to="/team/create" className="btn simple">Create a Team?</Link>
             </>)}
             </main>
         </>

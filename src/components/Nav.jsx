@@ -16,8 +16,8 @@ function MainNav(props) {
     return (
         <nav>
             <Button link="/circuit/1" btn_class="primary" text="Circuit" />
-            <Button link="/circuit/1" btn_class="primary" text="Franchises" />
-            <Button link="/circuit/1" btn_class="primary" text="Partners" />
+            <Button link="/user" btn_class="primary" text="Profile" />
+            <Button link="/about" btn_class="primary" text="About Us" />
             <Button link="/circuit/1" btn_class="secondary" text="Donate" />
         </nav>
     );

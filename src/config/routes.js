@@ -8,6 +8,7 @@ import { Circuit } from "../pages/Circuit.jsx";
 import { User, UserDiscordLogin, UserLogin, UserLogout, UserLinkTracker } from "../pages/User.jsx";
 import { TeamCreate, TeamDelete, TeamManage } from "../pages/Team.jsx";
 import { Admin, AdminUsers, AdminTrackers } from "../pages/Admin.jsx";
+import { About } from "../pages/About.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -73,7 +74,10 @@ const router = createBrowserRouter([
     path: "/admin/trackers",
     element: <AdminTrackers />,
   },
-  
+  {
+    path: "/about",
+    element: <About />,
+  },
 ]);
 
 export default router;

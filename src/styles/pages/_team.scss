@@ -1,31 +1,45 @@
 main.team {
     form {
         .header {
-            font-size: 1.15rem;
+            font-size: 1.5rem;
             margin: 0 0 .5rem;
+            position: relative;
+
+            &.underline:before {
+                border-bottom: 1px solid white;
+                position: absolute;
+                width: 100%;
+            }
         }
 
         .members {
             .table-header {
-                display: flex;
+                display: grid;
                 font-size: 1rem;
+                grid-template-areas: "isSub name";
+                grid-template-columns: 3.5rem 15rem;
 
                 p {
                     margin: 0;
                 }
                 .isSub {
-                    width: 3.5rem;
+                    grid-area: isSub;
+                    // width: 3.5rem;
                 }
                 .name {
-                    width: 15rem;
+                    grid-area: name;
+                    // width: 15rem;
                 }
             }
 
             .member {
                 align-items: center;
-                display: flex;
+                display: grid;
+                grid-template-areas: "isSub name del";
+                grid-template-columns: 3.5rem 15rem 4rem;
                 flex-direction: row;
-                padding: 0 0 0.5rem 0;
+                font-size: 1rem;
+                padding: .5rem 0;
 
 
                 .btn {
@@ -35,11 +49,30 @@ main.team {
                     margin-right: 1.75rem;
                 }
 
-                p:last-child {
+                .fakeCheck {
+                    grid-area: isSub;
+                    margin-right: 2.2rem;
+                }
+
+                .name {
                     font-size: 1.15rem;
+                    grid-area: name;
                     margin: 0 .5rem;
                     padding: 0;
-                    max-width: 15rem;
+                    width: 14.65rem;
+                }
+
+                .userDelete {
+                    background-color: var(--error);
+                    border-color: var(--error);
+                    color: #fff;
+                    cursor: pointer;
+                    font-size: 1.15rem;
+                    grid-area: del;
+                    margin: 0;
+                    padding: .3px 0.25rem 0;
+                    text-align: center;
+                    width: auto;
                 }
             }
         }

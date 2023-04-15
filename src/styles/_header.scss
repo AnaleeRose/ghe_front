@@ -130,4 +130,16 @@
             margin: 0 .5rem;
         }
     }
+    
+    .header {
+        font-size: 1.5rem;
+        margin: 0 0 .5rem;
+        position: relative;
+
+        &.underline:before {
+            border-bottom: 1px solid white;
+            position: absolute;
+            width: 100%;
+        }
+    }
 }

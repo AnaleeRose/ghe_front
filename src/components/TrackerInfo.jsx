@@ -35,7 +35,7 @@ export const TrackerInfo = (props) => {
             <>
                 <p>Rocket League Username: <a href={playerInfo.tracker_link}>{playerInfo.rl_username}</a></p>
                 <p>Rank: {RankCodes.getFullName(playerInfo.rank)}</p>
-                <Link to='/user/tracker' className="btn btn-trans">Edit your RL Tracker Info</Link>
+                <Link to='/user/tracker' className="btn simple">Edit your RL Tracker Info</Link>
             </>
         )
     }

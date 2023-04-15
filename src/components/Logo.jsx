@@ -12,6 +12,9 @@ export function Logo(props) {
         case "discord":
             return <DiscordLogo />
 
+        case "youtube":
+            return <YoutubeLogo />
+
         default:
             return <></>;
     }
@@ -51,4 +54,16 @@ function DiscordLogo(props) {
         </>
     );
 }
+
+function YoutubeLogo(props) {
+    return (
+        <>
+            <Link to="https://youtube.com/GoldenHourES">
+                <p className="a11y-text"><span>Golden Hour eSports' Youtube</span></p>
+                <i className="fa-brands fa-youtube"></i>
+            </Link>
+        </>
+    );
+}
+
 

@@ -22,8 +22,7 @@ export const User = () => {
         <>
             <Header pageName="user" />
             <main className="user">
-                <div id="info">Welcome, {UserProfile.getName()}!</div>
-                <br/>
+                <div class="header">Welcome, {UserProfile.getName()}!</div>
                 {UserProfile.isTrackerLinked() ? <TrackerInfo /> : <Button link='/user/tracker' btn_class="primary" text="Link your RL Tracker" />}
                 {UserProfile.getTeam() ? <TeamInfo /> : <Button link='/team/create' btn_class="primary" text="Create a Team" />}
             </main>
@@ -192,8 +191,8 @@ export const UserLinkTracker = () => {
     const [trackerData , setTrackerData] = useState(null)
 
     useEffect(()=>{
-        console.log("UserProfile.getTeam()");
-        console.log(UserProfile.getTeam());
+        console.log("UserProfile.isTrackerLinked()");
+        console.log(UserProfile.isTrackerLinked());
         if (UserProfile.isTrackerLinked()) {
             const fetchData = async() => {
                 let res =  await fetchTrackerInfo()
@@ -216,7 +215,8 @@ export const UserLinkTracker = () => {
                     {(trackerData) ? (<>
                         <TrackerForm tracker_data={trackerData} />
                     </>): (<>
-                        <p>Loading...</p>
+                        <TrackerForm  />
+                        {/* <p>Loading...</p> */}
                     </>)}
             </main>
         </>

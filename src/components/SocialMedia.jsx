@@ -6,8 +6,7 @@ export function SocialMedia(props) {
         <div className="socialMedia-container">
             <Logo type="twitter" />
             <Logo type="discord" />
-            <Logo type="twitter" />
-            <Logo type="discord" />
+            <Logo type="youtube" />
         </div>
     );
 }
