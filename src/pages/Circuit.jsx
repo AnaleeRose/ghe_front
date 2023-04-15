@@ -22,13 +22,7 @@ export const Circuit = () => {
             <li><Link to="/circuit/2s" className="tabNavBtns">2s</Link></li>
             <li><Link to="/circuit/1s" className="tabNavBtns">1s</Link></li>
           </ul>
-          {/* <section className="blurbContainer">
-            <HeadingBlurb blurbOptions={blurbOptions} pageStyles={pageStyles} />
-            <div className="blurbContent">
-              <p>Test.</p>
-            </div>
-          </section> */}
-          {/* <Matches matches={match_info}/> */}
+          <Matches matches={match_info}/>
         </main>
         </>
     );

@@ -43,5 +43,5 @@ let blurbOptions = {
   imgLink: process.env.REACT_APP_SITE_URL + "/imgs/background/trophy.svg", 
   imgAltText: "trophy background image",
   btnText: "SEE MATCHUPS", 
-  btnLink: "/circuit/1", 
+  btnLink: "/circuit/3s", 
 };
